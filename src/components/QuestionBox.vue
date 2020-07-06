@@ -8,7 +8,10 @@
 			<hr class="my-4">
 
 			<b-list-group>
-				<b-list-group-item v-for="(answer, index) in answers" :key="index" @click="selectAnswer(index)">
+				<b-list-group-item v-for="(answer, index) in answers"
+				:key="index"
+				@click="selectAnswer(index)"
+				:class="[selectedIndex === index ? 'selected' : '']">
 					{{ answer }}
 				</b-list-group-item>
 			</b-list-group>
@@ -64,12 +67,24 @@ export default {
 
 	.list-group-item:hover {
 		background : #EEE;
-		transition : 0.4s;
+		transition : 0.2s;
 		cursor : pointer;
 	}
 
 	.btn {
 		margin: 0 5px;
+	}
+
+	.selected {
+		background-color : lightblue;
+	}
+
+	.correct {
+		background-color : lightgreen;
+	}
+
+	.incorrect {
+		background-color : red;
 	}
 
 </style>
