@@ -62,6 +62,12 @@ export default {
 		margin-bottom: 15px;
 	}
 
+	.list-group-item:hover {
+		background : #EEE;
+		transition : 0.4s;
+		cursor : pointer;
+	}
+
 	.btn {
 		margin: 0 5px;
 	}
