@@ -23,7 +23,7 @@
 			</b-button>
 
 			<b-button @click="next" variant="success"
-			:disabled="selectedIndex === null">
+			:disabled="selectedIndex === null || answered === false">
 				Next
 			</b-button>
 		</b-jumbotron>
