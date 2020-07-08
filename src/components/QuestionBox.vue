@@ -17,10 +17,13 @@
 			</b-list-group>
 
 			<b-button variant="primary"
-			@click="submitAnswer">
+			@click="submitAnswer"
+			:disabled="selectedIndex === null || answered">
 				Submit
 			</b-button>
-			<b-button @click="next" variant="success" href="#">
+
+			<b-button @click="next" variant="success"
+			:disabled="selectedIndex === null">
 				Next
 			</b-button>
 		</b-jumbotron>
@@ -41,7 +44,8 @@ export default {
 		return {
 			selectedIndex : null,
 			shuffledAnswers : [],
-			correctIndex : null
+			correctIndex : null,
+			answered : false
 		}
 	},
 
@@ -56,19 +60,21 @@ export default {
 	},
 
 	watch : {
-		currentQuestion() {
-			this.selectedIndex = null;
+		currentQuestion : {
+			immediate : true,
+			handler() {
+				this.selectedIndex = null;
 
-			this.shuffleAnswers();
+				this.answered = false;
+
+				this.shuffleAnswers();
+			}
 		}
 
-		// currentQuestion : {
-		// 	immediate : true,
-		// 	handler() {
-		// 		this.selectedIndex = null;
+		// currentQuestion() {
+		// 	this.selectedIndex = null;
 
-		// 		this.shuffleAnswers();
-		// 	}
+		// 	this.shuffleAnswers();
 		// }
 	},
 
@@ -91,14 +97,15 @@ export default {
 			if(this.selectedIndex === this.correctIndex) {
 				isCorrect = true;
 			}
+			this.answered = true;
 
 			this.increment(isCorrect);
 		}
 	},
 
-	mounted() {
-		this.shuffleAnswers();
-	}
+	// mounted() {
+	// 	this.shuffleAnswers();
+	// }
 }
 </script>
 
